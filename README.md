@@ -62,6 +62,20 @@ npm run dev
 
 7. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+### Docker
+
+1. Build docker image
+
+```
+docker-compose build --no-cache
+```
+
+2. Run docker image
+
+```
+docker run -it -p 3000:3000 metazallia-web
+```
+
 ### Environment Variables
 
 The application requires the following environment variables:

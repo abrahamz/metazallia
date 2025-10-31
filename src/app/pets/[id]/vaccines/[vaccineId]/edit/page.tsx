@@ -3,6 +3,7 @@
 import { use, useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { Vaccine } from '@prisma/client'
 
 export default function EditVaccine({ 
   params 
@@ -25,7 +26,7 @@ export default function EditVaccine({
         const response = await fetch(`/api/pets/${id}/vaccines`)
         if (response.ok) {
           const vaccines = await response.json()
-          const vaccine = vaccines.find((v: any) => v.id === vaccineId)
+          const vaccine = vaccines.find((v: Vaccine) => v.id === vaccineId)
           if (vaccine) {
             setFormData({
               name: vaccine.name,

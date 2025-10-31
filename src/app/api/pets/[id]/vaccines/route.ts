@@ -80,8 +80,6 @@ export async function POST(
       }
     })
 
-    console.log('Vaccine created:', vaccine)
-
     return NextResponse.json(vaccine, { status: 201 })
   } catch (error) {
     console.error('Error creating vaccine:', error)
