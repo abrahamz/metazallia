@@ -3,6 +3,7 @@
 import { use, useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { Allergy } from '@prisma/client'
 
 export default function EditAllergy({ 
   params 
@@ -26,7 +27,7 @@ export default function EditAllergy({
         const response = await fetch(`/api/pets/${id}/allergies`)
         if (response.ok) {
           const allergies = await response.json()
-          const allergy = allergies.find((a: any) => a.id === allergyId)
+          const allergy = allergies.find((a: Allergy) => a.id === allergyId)
           if (allergy) {
             setFormData({
               name: allergy.name,

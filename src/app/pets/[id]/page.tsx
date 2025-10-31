@@ -29,7 +29,6 @@ export default function PetDetail({ params }: { params: Promise<{ id: string }> 
       const response = await fetch(`/api/pets/${id}`)
       if (response.ok) {
         const data = await response.json()
-        console.log('Pet data:', data)
         setPet(data)
       } else {
         router.push('/dashboard')

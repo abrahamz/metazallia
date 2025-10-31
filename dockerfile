@@ -33,7 +33,7 @@ RUN touch ./dev.db
 
 # Set environment variable for database
 ENV DATABASE_URL="file:./dev.db"
-ENV NODE_ENV=Production
+ENV NODE_ENV=production
 
 # Generate Prisma client and create database schema
 RUN npx prisma generate --schema=./prisma/schema.prisma
