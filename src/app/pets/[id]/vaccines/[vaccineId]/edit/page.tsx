@@ -23,10 +23,9 @@ export default function EditVaccine({
   useEffect(() => {
     const fetchVaccine = async () => {
       try {
-        const response = await fetch(`/api/pets/${id}/vaccines`)
+        const response = await fetch(`/api/pets/${id}/vaccines/${vaccineId}`)
         if (response.ok) {
-          const vaccines = await response.json()
-          const vaccine = vaccines.find((v: Vaccine) => v.id === vaccineId)
+          const vaccine = await response.json()
           if (vaccine) {
             setFormData({
               name: vaccine.name,
@@ -54,13 +53,12 @@ export default function EditVaccine({
     setError('')
 
     try {
-      const response = await fetch(`/api/pets/${id}/vaccines`, {
+      const response = await fetch(`/api/pets/${id}/vaccines/${vaccineId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          vaccineId,
           ...formData
         }),
       })

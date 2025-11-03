@@ -24,10 +24,9 @@ export default function EditAllergy({
   useEffect(() => {
     const fetchAllergy = async () => {
       try {
-        const response = await fetch(`/api/pets/${id}/allergies`)
+        const response = await fetch(`/api/pets/${id}/allergies/${allergyId}`)
         if (response.ok) {
-          const allergies = await response.json()
-          const allergy = allergies.find((a: Allergy) => a.id === allergyId)
+          const allergy = await response.json()
           if (allergy) {
             setFormData({
               name: allergy.name,
@@ -56,13 +55,12 @@ export default function EditAllergy({
     setError('')
 
     try {
-      const response = await fetch(`/api/pets/${id}/allergies`, {
+      const response = await fetch(`/api/pets/${id}/allergies/${allergyId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          allergyId,
           ...formData
         }),
       })
