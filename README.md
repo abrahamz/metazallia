@@ -64,15 +64,19 @@ npm run dev
 
 ### Docker
 
-1. Build docker image
-
+1. Set up environment variables:
+```bash
+cp env.example .env
 ```
+Edit `.env` and update the `AUTH_SECRET` with a secure random string.
+
+2. Build docker image
+```bash
 docker-compose build --no-cache
 ```
 
-2. Run docker image
-
-```
+3. Run docker image
+```bash
 docker run -it -p 3000:3000 metazallia-web
 ```
 
