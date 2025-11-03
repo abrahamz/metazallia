@@ -27,7 +27,6 @@ COPY . .
 # ENV NEXT_TELEMETRY_DISABLED=1
 
 COPY prisma ./prisma
-# COPY prisma/dev.db ./dev.db
 
 RUN touch ./dev.db
 
