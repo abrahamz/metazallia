@@ -72,12 +72,6 @@ export default function AdminDashboard() {
               <span className="text-gray-700">
                 Welcome, {session.user.firstName} {session.user.lastName}
               </span>
-              <Link
-                href="/dashboard"
-                className="text-indigo-600 hover:text-indigo-800"
-              >
-                User Dashboard
-              </Link>
               <button
                 onClick={() => router.push('/api/auth/signout')}
                 className="text-gray-500 hover:text-gray-700"
