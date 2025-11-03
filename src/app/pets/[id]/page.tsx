@@ -161,7 +161,7 @@ export default function PetDetail({ params }: { params: Promise<{ id: string }> 
                 </Link>
                 <Link
                   href={`/pets/${pet.id}/allergies/new`}
-                  className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700"
+                  className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-red-700"
                 >
                   Add Allergy
                 </Link>

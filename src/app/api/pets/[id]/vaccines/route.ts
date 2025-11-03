@@ -87,54 +87,6 @@ export async function POST(
   }
 }
 
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  try {
-    const session = await getServerSession(authOptions)
-    const { id } = await params;
-    
-    if (!session) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
-
-    const body = await request.json()
-    const { vaccineId, name, date } = body
-
-    if (!vaccineId || !name || !date) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
-    }
-
-    // Verify the vaccine belongs to a pet owned by the user
-    const vaccine = await prisma.vaccine.findFirst({
-      where: {
-        id: vaccineId,
-        pet: {
-          ownerId: session.user.id
-        }
-      }
-    })
-
-    if (!vaccine) {
-      return NextResponse.json({ error: 'Vaccine not found' }, { status: 404 })
-    }
-
-    const updatedVaccine = await prisma.vaccine.update({
-      where: { id: vaccineId },
-      data: {
-        name,
-        date: new Date(date)
-      }
-    })
-
-    return NextResponse.json(updatedVaccine)
-  } catch (error) {
-    console.error('Error updating vaccine:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
-  }
-}
-
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
