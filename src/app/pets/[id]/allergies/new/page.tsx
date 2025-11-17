@@ -42,6 +42,18 @@ export default function NewAllergy({ params }: { params: Promise<{ id: string }>
     }
   }
 
+  const handleSearch = async (search: string) => {
+    try {
+      const response = await fetch(`/api/allergies?q=${search}`);
+
+      if (response.ok) {
+        console.log(response.json())
+      }
+    } catch (error) {
+      setError('An error occurred. Please try again.')
+    }
+  }
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
@@ -78,7 +90,7 @@ export default function NewAllergy({ params }: { params: Promise<{ id: string }>
                 name="name"
                 required
                 value={formData.name}
-                onChange={handleChange}
+                onChange={async (e) => handleSearch(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-gray-600"
                 placeholder="e.g., Chicken, Pollen, Flea bites"
               />
